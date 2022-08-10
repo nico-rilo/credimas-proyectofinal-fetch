@@ -103,6 +103,20 @@ btnHistorial.addEventListener("click", () => {
 })
 
 
+function borrarHistorial() {
+
+    localStorage.removeItem("plazosFijos");
+
+}
+
+const btnBorrarHistorial = document.createElement("button");
+btnBorrarHistorial.addEventListener('click', (event) => {
+
+    event.preventDefault();
+    borrarHistorial();
+});
+
+
 
 const titulo = (document.querySelector("h1").textContent = "CREDIMAS, es mejor.");
 const subTitulo = (document.querySelector(".text-white-50").textContent = "Happiness is a warm gun");
