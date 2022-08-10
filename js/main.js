@@ -103,21 +103,6 @@ btnHistorial.addEventListener("click", () => {
 })
 
 
-function borrarHistorial() {
-
-    localStorage.removeItem("plazosFijos");
-
-}
-
-const btnBorrarHistorial = document.createElement("button");
-btnBorrarHistorial.addEventListener('click', (event) => {
-
-    event.preventDefault();
-    borrarHistorial();
-});
-
-
-
 const titulo = (document.querySelector("h1").textContent = "CREDIMAS, es mejor.");
 const subTitulo = (document.querySelector(".text-white-50").textContent = "Happiness is a warm gun");
 const titulo2 = (document.querySelector("h2").textContent = "Alli y para siempre aprendimos que ciertos fuegos no se encienden frotando dos palitos ni se apagan con solo soplar");
