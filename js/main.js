@@ -7,7 +7,6 @@ let rangoInversion;
 let precio = 0;
 const intereses = [1.1, 1.2, 1.3, 1.4, 1.5];
 
-
 const PlazosFijos = JSON.parse(localStorage.getItem("plazosFijos")) || [];
 
 class plazoFijoUsuario {
@@ -28,8 +27,6 @@ const validarCampos = () => {
 }
 
 const crearTarjeta = () => {
-
-
 
     inversionIngresada = parseInt(inversion.value);
 
@@ -54,9 +51,7 @@ const crearTarjeta = () => {
         PlazosFijos.push(new plazoFijoUsuario(inversionIngresada, intereses[4]));
     }
 
-   
     localStorage.setItem("plazosFijos", JSON.stringify(PlazosFijos));
-
 
     contenedor.innerHTML = `<div class="card col-4 mx-1 p-3">
                                 <h3> Tu inversión es de ${inversionIngresada}.</h3>
@@ -73,8 +68,6 @@ boton.addEventListener("click", (e) => {
         crearTarjeta()
     };
 });
-
-
 
 let contenedorPlazos = document.getElementById("contenedorPlazos");
 let btnHistorial = document.getElementById("verHistorial");
@@ -96,12 +89,32 @@ const mostrarTotal = () => {
     totalizador.innerHTML = `El total invertido es de <strong>${inversionTotal}</strong>, recibiendo un total de <strong>${depositoTotal}</strong>, para una ganancia de <strong>${gananciaTotal}</strong>.`
 };
 
-
 btnHistorial.addEventListener("click", () => {
     verHistorial();
     mostrarTotal();
 })
 
+function borrarHistorial() {
+
+    localStorage.removeItem("plazosFijos");
+    PlazosFijos.length = 0;
+}
+
+const btnBorrarHistorial = document.getElementById("borrarHistorial");
+btnBorrarHistorial.addEventListener('click', (event) => {
+
+    event.preventDefault();
+    borrarHistorial();
+    verHistorial();
+    mostrarTotal();
+
+    contenedor.innerHTML = `<div class="card col-4 mx-1 p-3">
+                                <h3> Gracias por utilizar nuestro simulador </h3>
+                                <p>Esperamos tu inversión!!</p>
+                            </div>`;
+
+    formulario.reset();
+});
 
 const titulo = (document.querySelector("h1").textContent = "CREDIMAS, es mejor.");
 const subTitulo = (document.querySelector(".text-white-50").textContent = "Happiness is a warm gun");
@@ -118,7 +131,6 @@ const encabezado = document.querySelector(".encabezado");
 console.log(encabezado.children)
 
 encabezado.insertBefore(agregado, encabezado[1]);
-
 
 let listaVacia = document.querySelector("#listaVacia");
 
