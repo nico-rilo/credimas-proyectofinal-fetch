@@ -110,12 +110,11 @@ btnBorrarHistorial.addEventListener('click', (event) => {
     Swal.fire({
         title: 'VAMOOOO METÉLE PESOS ARGENTOS!!!!',
         text: 'Muerte al dolar yankeeee',
-        imageUrl: 'http://c.files.bbci.co.uk/6AD9/production/_103735372_gettyimages-175494583.jpg',
+        imageUrl: '',
         imageWidth: 400,
         imageHeight: 200,
         imageAlt: 'Dolar quemado',
       })
-    
 });
 
 const plazoFijoBanco = {
@@ -163,10 +162,10 @@ const plazoFijoLaucha2 = {
 
 console.log (plazoFijoLaucha2) 
 
-const titulo = (document.querySelector("h1").textContent = "Banco LAUCHISMO");
-const subTitulo = (document.querySelector(".text-white-50").textContent = "Entre la espada y la pared, siempre");
-const titulo2 = (document.querySelector("h2").textContent = "Somos los mas delincuentes del mercado");
-const descripcion = (document.querySelector(".lead").textContent = "Estamos para defondar tus ahorros y hacerte creer que ganarás dinero con nosotros");
+const titulo = (document.querySelector("h1").textContent = "Credimas");
+const subTitulo = (document.querySelector(".text-white-50").textContent = "Credimas, es mejor.");
+const titulo2 = (document.querySelector("h2").textContent = "Happinnes is a warm gun");
+const descripcion = (document.querySelector(".lead").textContent = "Alli y para siemrpe aprendimso que ciertos fuegos no se encienden frotando dospalitos ni se apagan con solo soplar.");
 
 const enlace = document.querySelector(".navbar-brand");
 enlace.remove()
