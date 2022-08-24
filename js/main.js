@@ -42,8 +42,6 @@ const crearTarjeta = () => {
         PlazosFijos.push(new plazoFijoUsuario(inversionIngresada, intereses[4]));
     }
 
-    console.log (inversionIngresada?.a || "el interés no existe")
-
     localStorage.setItem("plazosFijos", JSON.stringify(PlazosFijos));
 
     contenedor.innerHTML = `<div class="card col-4 mx-1 p-3">
@@ -77,7 +75,6 @@ const mostrarTotal = () => {
     let depositoTotal = PlazosFijos.reduce((acc, plazo) => acc + plazo.deposito, 0);
     let gananciaTotal = depositoTotal - inversionTotal;
 
-    console.log(PlazosFijos);
     totalizador.innerHTML = `El total invertido es de <strong>${inversionTotal}</strong>, recibiendo un total de <strong>${depositoTotal}</strong>, para una ganancia de <strong>${gananciaTotal}</strong>.`
 };
 
@@ -127,10 +124,6 @@ const plazoFijoBanco = {
 
 }
 
-console.log (plazoFijoBanco?.cuentas?.cajaAhorroEnPesos || "Esa cuenta no existe")
-
-console.log (plazoFijoBanco?.cuentas?.cajaDeSeguridad || "Esa cuenta no existe") 
-
 const plazoFijoBancoR = {
     cliente: "Alberto",
     cuentas: {
@@ -142,9 +135,6 @@ const plazoFijoBancoR = {
 }
 
 const { cliente, cuentas} = plazoFijoBancoR
-
-console.log (cliente) 
-console.log (cuentas) 
 
 const plazoFijoLaucha = {
     cliente: "Alberto",
@@ -160,8 +150,6 @@ const plazoFijoLaucha2 = {
     ...plazoFijoLaucha
 }
 
-console.log (plazoFijoLaucha2) 
-
 const titulo = (document.querySelector("h1").textContent = "Credimas");
 const subTitulo = (document.querySelector(".text-white-50").textContent = "Credimas, es mejor.");
 const titulo2 = (document.querySelector("h2").textContent = "Happinnes is a warm gun");
@@ -174,7 +162,6 @@ let agregado = document.createElement("p");
 agregado.innerHTML = "<h5>Parrafo agregados</h5>";
 
 const encabezado = document.querySelector(".encabezado");
-console.log(encabezado.children)
 
 encabezado.insertBefore(agregado, encabezado[1]);
 
