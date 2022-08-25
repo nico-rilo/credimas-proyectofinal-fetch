@@ -42,6 +42,9 @@ const crearTarjeta = () => {
         PlazosFijos.push(new plazoFijoUsuario(inversionIngresada, intereses[4]));
     }
 
+    console.log (inversionIngresada?.a || "el interés no existe")
+
+    
     localStorage.setItem("plazosFijos", JSON.stringify(PlazosFijos));
 
     contenedor.innerHTML = `<div class="card col-4 mx-1 p-3">
@@ -56,7 +59,6 @@ const crearTarjeta = () => {
 boton.addEventListener("click", (e) => {
     e.preventDefault();    
         crearTarjeta();
-   
 });
 
 let contenedorPlazos = document.getElementById("contenedorPlazos");
@@ -75,6 +77,7 @@ const mostrarTotal = () => {
     let depositoTotal = PlazosFijos.reduce((acc, plazo) => acc + plazo.deposito, 0);
     let gananciaTotal = depositoTotal - inversionTotal;
 
+    console.log(PlazosFijos);
     totalizador.innerHTML = `El total invertido es de <strong>${inversionTotal}</strong>, recibiendo un total de <strong>${depositoTotal}</strong>, para una ganancia de <strong>${gananciaTotal}</strong>.`
 };
 
@@ -104,75 +107,43 @@ btnBorrarHistorial.addEventListener('click', (event) => {
                             </div>`;
 
     formulario.reset();
+
     Swal.fire({
         title: 'VAMOOOO METÉLE PESOS ARGENTOS!!!!',
-        text: 'Muerte al dolar yankeeee',
-        imageUrl: '',
+        text: 'Que nosotrooo nos quemamo los verdeeee',
+        imageUrl: 'http://c.files.bbci.co.uk/6AD9/production/_103735372_gettyimages-175494583.jpg',
         imageWidth: 400,
         imageHeight: 200,
         imageAlt: 'Dolar quemado',
-      })
+})
+    
 });
 
-const plazoFijoBanco = {
-    cliente: "Alberto",
-    cuentas: {
-        ctaCorriente: 0203,
-        cajaAhorroEnPesos: 5555,
-        cahaAhorroenDolares: 2258,
-    }
-
+const cotizacionDolar = () => {
+    fetch('https://api.bluelytics.com.ar/v2/latest')
+        .then((response) => response.json())
+        .then(informacion => {
+            console.log(informacion);
+            let acumulador = ``;
+            for (const monedas in informacion) {
+                if (monedas === "last_update") {
+                    continue
+                }
+                acumulador += `<div class="card">
+    <h4>${monedas}</h4>
+<h6>Precio Venta: ${informacion[monedas].value_sell}</h6>
+<h6>Precio Compra: ${informacion[monedas].value_buy}</h6>
+</div>`
+} 
+})       
 }
 
-const plazoFijoBancoR = {
-    cliente: "Alberto",
-    cuentas: {
-        ctaCorriente: 3245,
-        cajaAhorroEnPesos: 5555,
-        cahaAhorroenDolares: 2258,
-    }
+cotizacionDolar();
 
-}
-
-const { cliente, cuentas} = plazoFijoBancoR
-
-const plazoFijoLaucha = {
-    cliente: "Alberto",
-    cuentas: {
-        ctaCorriente: 3245,
-        cajaAhorroEnPesos: 5555,
-        cahaAhorroenDolares: 2258,
-    }
-
-}
-
-const plazoFijoLaucha2 = {
-    ...plazoFijoLaucha
-}
-
-const titulo = (document.querySelector("h1").textContent = "Credimas");
-const subTitulo = (document.querySelector(".text-white-50").textContent = "Credimas, es mejor.");
-const titulo2 = (document.querySelector("h2").textContent = "Happinnes is a warm gun");
-const descripcion = (document.querySelector(".lead").textContent = "Alli y para siemrpe aprendimso que ciertos fuegos no se encienden frotando dospalitos ni se apagan con solo soplar.");
+const titulo = (document.querySelector("h1").textContent = "CREDIMAS");
+const subTitulo = (document.querySelector(".text-white-50").textContent = "ES MEJOR.");
+const titulo2 = (document.querySelector("h2").textContent = "Happiness is a warm gun");
+const descripcion = (document.querySelector(".lead").textContent = "Alli y para siempre aprendimos que ciertos fuegos no se encienden frotando dos palitos ni se apagan con solo soplar");
 
 const enlace = document.querySelector(".navbar-brand");
 enlace.remove()
-
-let agregado = document.createElement("p");
-agregado.innerHTML = "<h5>Parrafo agregados</h5>";
-
-const encabezado = document.querySelector(".encabezado");
-
-encabezado.insertBefore(agregado, encabezado[1]);
-
-let listaVacia = document.querySelector("#listaVacia");
-
-let otrosServicios = ["Dólares", "Bonos", "Caja de seguridad"];
-
-for (let servicio of otrosServicios) {
-    let listado = document.createElement("li");
-    listado.innerHTML = servicio;
-    listaVacia.appendChild(listado);
-}
-
-
