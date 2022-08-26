@@ -5,7 +5,7 @@ let contenedor = document.getElementById("contenedor");
 let rangoInversion
 
 let precio = 0;
-const intereses = [1.1, 1.2, 1.3, 1.4, 1.5]
+const intereses = [1.1, 1.2, 1.3, 1.4, 1.5];
 
 let PlazosFijos = JSON.parse(localStorage.getItem("plazosFijos")) || []; 
 
@@ -13,13 +13,13 @@ class plazoFijoUsuario {
     constructor(monto, interes) {
         this.monto = monto,
         this.interes = interes,
-        this.deposito = this.monto * this.interes
+        this.deposito = this.monto * this.interes;
     }
 }
 
 const crearTarjeta = () => {
 
-        inversionIngresada = parseInt(inversion.value)
+        inversionIngresada = parseInt(inversion.value);
 
     if (inversionIngresada <= 1000) {
         rangoInversion = ("Depositando ese monto tenés el 10% de interés anual, por lo tanto tu depósito se convertirá en " + "$" + inversionIngresada * intereses[0]);
@@ -41,10 +41,7 @@ const crearTarjeta = () => {
         rangoInversion = ("Depositando ese monto tenés el 50% de interés anual, por lo tanto tu depósito se convertirá en " + "$" + inversionIngresada * intereses[4]);
         PlazosFijos.push(new plazoFijoUsuario(inversionIngresada, intereses[4]));
     }
-
-    console.log (inversionIngresada?.a || "el interés no existe")
-
-    
+ 
     localStorage.setItem("plazosFijos", JSON.stringify(PlazosFijos));
 
     contenedor.innerHTML = `<div class="card col-4 mx-1 p-3">
@@ -53,7 +50,6 @@ const crearTarjeta = () => {
                             </div>`;
 
     formulario.reset();
-
 }
 
 boton.addEventListener("click", (e) => {
@@ -77,14 +73,13 @@ const mostrarTotal = () => {
     let depositoTotal = PlazosFijos.reduce((acc, plazo) => acc + plazo.deposito, 0);
     let gananciaTotal = depositoTotal - inversionTotal;
 
-    console.log(PlazosFijos);
-    totalizador.innerHTML = `El total invertido es de <strong>${inversionTotal}</strong>, recibiendo un total de <strong>${depositoTotal}</strong>, para una ganancia de <strong>${gananciaTotal}</strong>.`
+    totalizador.innerHTML = `El total invertido es de <strong>${inversionTotal}</strong>, recibiendo un total de <strong>${depositoTotal}</strong>, para una ganancia de <strong>${gananciaTotal}</strong>.`;
 };
 
 btnHistorial.addEventListener("click", () => {
     verHistorial();
     mostrarTotal();
-    5
+    5;
 })
 
 function borrarHistorial() {
@@ -123,7 +118,6 @@ const cotizacionDolar = () => {
     fetch('https://api.bluelytics.com.ar/v2/latest')
         .then((response) => response.json())
         .then(informacion => {
-            console.log(informacion);
             let acumulador = ``;
             for (const monedas in informacion) {
                 if (monedas === "last_update") {
@@ -131,9 +125,9 @@ const cotizacionDolar = () => {
                 }
                 acumulador += `<div class="card">
     <h4>${monedas}</h4>
-<h6>Precio Venta: ${informacion[monedas].value_sell}</h6>
-<h6>Precio Compra: ${informacion[monedas].value_buy}</h6>
-</div>`
+    <h6>Precio Venta: ${informacion[monedas].value_sell}</h6>
+    <h6>Precio Compra: ${informacion[monedas].value_buy}</h6>
+    </div>`;
 } 
 })       
 }
@@ -146,4 +140,4 @@ const titulo2 = (document.querySelector("h2").textContent = "Happiness is a warm
 const descripcion = (document.querySelector(".lead").textContent = "Alli y para siempre aprendimos que ciertos fuegos no se encienden frotando dos palitos ni se apagan con solo soplar");
 
 const enlace = document.querySelector(".navbar-brand");
-enlace.remove()
+enlace.remove();
